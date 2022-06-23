@@ -31,7 +31,7 @@ const TopBar = () => {
 
               </div>
             )
-          }) : <div> I am topbar </div>
+          }) : <div><center> <strong>Loading.....</strong></center> </div>
       }
     </>
 

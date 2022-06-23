@@ -35,10 +35,14 @@ const AppProvider = ({children}) => {
         }finally{
             setIsLoading(false)
         }
+
+        
        
 
 
     }, [page]);
+
+
     return <AppContext.Provider value={{movieList, topMovie, totalPage, isLoading, page, setPage}}>{children}</AppContext.Provider>
 };
 
@@ -47,8 +51,17 @@ const useGlobalContext = () => {
     return useContext(AppContext)
 }
 
+const setLocalStorageData = (obj) => {
+    localStorage.setItem(JSON.stringify(obj))
+}
+const getLocalStorageData = (key) => {
+    localStorage.getItem(key)
+}
+const removeLocalStorageData = (key) => {
+    localStorage.removeItem(key)
+}
 
 
 
 
-export {AppContext, AppProvider , useGlobalContext}
+export {AppContext, AppProvider , useGlobalContext, setLocalStorageData, getLocalStorageData, removeLocalStorageData}
