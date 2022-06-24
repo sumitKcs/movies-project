@@ -121,4 +121,25 @@
         width: fit-content;
         font-size: small;
     }
+
+    .fav-no-data{
+        height: 50vh;
+        width: 80vw;
+        margin-top: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    
+    }
+    .no-fav-button{
+        align-self: center;
+        margin-top: -13rem;
+    }
+    .no-fav-msg{
+        align-self: center;
+        margin-top: -3rem;
+        font-size: x-large;
+        font-weight: bolder;
+        color: grey;
+    }
 }
