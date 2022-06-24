@@ -6,6 +6,9 @@ import SingleMovie from './SingleMovie';
 import Error from './Error';
 import Home from './Home';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Favourites from './Favourites';
+import AddFavourites from './AddFavourites';
+
 const App = () => {
   
 
@@ -14,7 +17,9 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/id/:id" element={<SingleMovie />} />
+        <Route path="/id/:media_type/:id" element={<SingleMovie />} />
+        <Route path="/favourites" element={<Favourites />} />
+        <Route path="/explore" element={<AddFavourites />} />
         <Route path="*" element={<Error />} />
       </Routes>
     </BrowserRouter>

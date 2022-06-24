@@ -20,12 +20,12 @@ const TopBar = () => {
                 <div className='top-trending-image-conatiner'>
 
                   <img style={{ width: "100%", height: "100%" }} src={`https://image.tmdb.org/t/p/original${firstMovie.backdrop_path}`} className="topbar-movie-image" alt="..." />
-                  {/* <div className='topbar-trending-title'>
+                  <div className='topbar-trending-title'>
                     {firstMovie.original_title}
                   </div>
                   <div className='topbar-trending-rank'>
                     Trending #1
-                  </div> */}
+                  </div>
                 </div>
 
 

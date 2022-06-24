@@ -17,10 +17,10 @@ const Movies = () => {
         await movieClickHandler()
     }
 
-    const movieClickHandler = async (id) => {
+    const movieClickHandler = async (id, media_type) => {
         setIsLoading(true)
-        console.log("movie click hanleer id", id)
-        navigate(`/id/${id}`)
+        //console.log("movie click hanleer id", id)
+        navigate(`/id/${media_type}/${id}`)
       
     }
 
@@ -29,7 +29,7 @@ const Movies = () => {
     return (
 
         <>
-            <div className='trending-text'> Trending </div>
+            <div className='trending-text'> Trending</div>
 
 
 
@@ -39,7 +39,7 @@ const Movies = () => {
 
                         return (
 
-                            <div className="movie-card" key={index} onClick={() => movieClickHandler(movieObj.id)}>
+                            <div className="movie-card" key={index} onClick={() => movieClickHandler(movieObj.id,  movieObj.media_type)}>
                                 {/* <FontAwesomeIcon  onClick={ favClickhandler} className= {favIconStyle} icon={solid('heart')}  /> */}
 
                                 <div className='movie-image'>

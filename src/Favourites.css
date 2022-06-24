@@ -1,0 +1,124 @@
+.fav-conatiner-box{
+  
+    width: 100vw;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:center;
+    flex-direction: row;
+    margin: auto;
+  
+   
+}
+.fav-text{
+    font-size: x-large;
+    font-weight: bold;
+    color: grey;
+    text-align: center;;
+    padding: .5rem;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    
+}
+.fav-card{
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    margin: 1rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+
+}
+.fav-image-container{
+    height: fit-content;
+    width: fit-content;
+}
+
+.fav-image{
+    height: 100%;
+    width: 15vw;
+    padding: 1.5rem;
+}
+.fav-media-details{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+    width: 20vw;
+   
+}
+.fav-title{
+   align-self: flex-start;
+   padding: .2rem;
+   font-weight: bolder;
+}
+.fav-genre-container{
+    color: black;
+  
+    margin-top: -2rem;
+}
+.fav-genre{
+
+}
+.fav-rating{
+    
+}
+.fav-delete-button{
+    align-self: flex-start;
+    padding: .5rem 1rem;
+    width: fit-content;
+    font-size: small;
+}
+.fav-no-data{
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    height: 50vh;
+    width: 50vw;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+}
+.no-fav-button{
+    align-self: center;
+    margin-top: -13rem;
+}
+.no-fav-msg{
+    align-self: center;
+    margin-top: -3rem;
+    font-size: xx-large;
+    font-weight: bolder;
+    color: grey;
+}
+@media only screen and (max-width: 800px) {
+    .fav-conatiner-box{
+       margin: 0px; 
+       
+    }
+    .fav-card{
+        
+    }
+
+    .fav-image-container{
+        height: fit-content;
+        width: fit-content;
+        
+       
+    }
+    .fav-image{
+        height: 40vh;
+        width: 50vw;
+        padding: .6rem;
+        padding: 1.5rem;
+    }
+    .fav-media-details{
+        padding: 0;
+    }
+    .fav-media-details{
+        height: 100%;
+        width: 47vw;
+    }
+    .fav-delete-button{
+        align-self: flex-start;
+        padding: .5rem .3rem;
+        width: fit-content;
+        font-size: small;
+    }
+}
