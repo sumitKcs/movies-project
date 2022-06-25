@@ -1,14 +1,14 @@
 import axios from 'axios'
 import React from 'react'
 import { useEffect, useState } from 'react'
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { useGlobalContext } from './Context'
 import Navbar from './Navbar'
-
+import { AiOutlineBackward } from 'react-icons/ai';
 
 const SingleMovie = () => {
     const params = useParams()
-
+    const navigate = useNavigate()
     const { id, media_type, movieObj } = params
     //console.log(id, media_type, movieObj)
     let videoType = ""
@@ -169,8 +169,9 @@ const SingleMovie = () => {
     return (
         <>
             <Navbar />
+
             {
-                (Object.keys(SingleMoviedata).length === 0 && SingleMoviedata.constructor === Object) ? <div className='loading-text'><img src="/fading_circles.gif"/></div> :
+                (Object.keys(SingleMoviedata).length === 0 && SingleMoviedata.constructor === Object) ? <div className='loading-text'><img src="/fading_circles.gif" /></div> :
 
 
 
@@ -179,6 +180,11 @@ const SingleMovie = () => {
 
                         <>
                             <div className="single-movie-card-container">
+                                <div className='back-button-container'>
+                                    <AiOutlineBackward className='back-button' onClick={() => navigate(-1)} />
+
+                                </div>
+
                                 <div className='single-movie-card'>
                                     <div className='single-movie-image-container'>
                                         <img src={`https://image.tmdb.org/t/p/original${SingleMoviedata.poster_path}`} className="single-movie-image" alt="..." />
@@ -215,6 +221,7 @@ const SingleMovie = () => {
                                             }
 
                                         </div>
+                                        
 
 
                                     </div>
@@ -229,6 +236,10 @@ const SingleMovie = () => {
 
                         <>
                             <div className="single-movie-card-container">
+                                <div className='back-button-container'>
+                                    <AiOutlineBackward className='back-button' onClick={() => navigate(-1)} />
+
+                                </div>
                                 <div className='single-movie-card'>
                                     <div className='single-movie-image-container'>
                                         <img src={`https://image.tmdb.org/t/p/original${SingleMoviedata.poster_path}`} className="single-movie-image" alt="..." />
@@ -246,6 +257,7 @@ const SingleMovie = () => {
                                             }
 
                                         </div>
+                                        
 
 
                                     </div>

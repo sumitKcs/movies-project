@@ -6,31 +6,43 @@ body {
 html {
     overflow-x: hidden;
 }
-.app-navbar{
+
+.nav-bar-container {
+    position: fixed;
+    top: 0px;
+    z-index: 99;
+    height: fit-content;
+    width: 100vw;
+}
+
+.app-navbar {
     position: absolute;
     z-index: 10;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
     font-weight: bold;
-    position: fixed; 
-    top: 0px;
-    z-index: 99;
+
 }
-a.navbar-brand{
-    
+
+a.navbar-brand {
+
     color: grey;
     font-size: x-Large;
     letter-spacing: 3px;
 }
-.navbar-nav { 
+
+.navbar-nav {
     margin: auto;
     padding-right: 10rem;
 }
-.menu-link:hover{
+
+.menu-link:hover {
     font-size: large;
 }
-.dropdown-item{
+
+.dropdown-item {
     cursor: pointer;
 }
+
 .movie-container {
     display: flex;
     flex-direction: row;
@@ -56,7 +68,7 @@ a.navbar-brand{
 
 .top-trending {
     overflow-x: hidden;
-    margin: 0px;
+    margin-top: 3.5rem;
     padding: 0px;
     width: 100%;
 }
@@ -128,7 +140,8 @@ a.navbar-brand{
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 
 }
-.search-icon{
+
+.search-icon {
     font-size: xx-large;
     margin-right: 1rem;
     height: fit-content;
@@ -137,7 +150,7 @@ a.navbar-brand{
 .searchBox {
     padding: 5px 10px;
     border: inset;
-   
+
 }
 
 .single-movie-card-container {
@@ -145,8 +158,25 @@ a.navbar-brand{
     flex-direction: row;
     justify-content: center;
     background-color: white;
-    height: 100vh;
+    height: fit-content;
     width: 100vw;
+    padding: 2rem;
+
+
+}
+
+.back-button-container {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+
+
+
+}
+
+.back-button {
+    font-size: 3rem;
 
 }
 
@@ -233,12 +263,14 @@ a.navbar-brand{
     margin-left: auto;
 
 }
-.single-movie-runtime{
+
+.single-movie-runtime {
     font-weight: 400;
     font-size: medium;
 }
-.loading-text{
-    
+
+.loading-text {
+
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -249,7 +281,49 @@ a.navbar-brand{
     font-weight: bolder;
     color: grey;
     letter-spacing: 1rem;
-    
+
+}
+
+.footer-container {
+    height: 3rem;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.social_icons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    font-size: x-large;
+    width: 15rem;
+    color: grey;
+    align-content: center;
+    align-items: center;
+
+}
+
+.instagram {
+    font-size: xx-large;
+    align-self: center;
+}
+
+.brand-name {
+    width: 13rem;
+}
+
+.copyright {
+    width: 8rem;
+
+}
+
+.brand-name,
+.copyright {
+    align-self: center;
+    font-size: larger;
+    font-weight: bolder;
+    color: grey;
 }
 
 @media only screen and (max-width: 800px) {
@@ -308,6 +382,7 @@ a.navbar-brand{
     .trending-text {
         box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
     }
+
     .topbar-trending-title {
         color: white;
         position: absolute;
@@ -317,6 +392,7 @@ a.navbar-brand{
         width: 100%;
         margin-left: 1rem;
     }
+
     .topbar-trending-rank {
         color: yellow;
         position: absolute;
@@ -326,11 +402,68 @@ a.navbar-brand{
         width: 99%;
         margin-left: 1rem;
     }
+
     .search-container {
-        background-color: white; 
+        background-color: white;
         display: flex;
         justify-content: center;
     }
-   
 
+    .back-button-container {
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        align-self: center;
+        position: fixed;
+        left: 0;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+
+
+    }
+
+    .back-button-container {}
+
+
+    .footer-container {
+        height: 3rem;
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .social_icons {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        font-size: x-large;
+        width: 15rem;
+        color: grey;
+        align-content: center;
+        align-items: center;
+
+    }
+
+    .instagram {
+        font-size: xx-large;
+        align-self: center;
+    }
+
+    .brand-name {
+        width: 13rem;
+    }
+
+    .brand-name,
+    .copyright {
+        align-self: center;
+        font-size: larger;
+        font-weight: bolder;
+        color: grey;
+    }
+    .genre-dropdown{
+        height: min-content;
+        overflow-y: scroll;
+    }
+   
+   
 }

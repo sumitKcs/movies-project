@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom'
 import { useGlobalContext } from './Context'
 
 const Navbar = () => {
-    const { movieGenre, tvGenre, setDynamicText} = useGlobalContext();
+    const { movieGenre, tvGenre, setDynamicText } = useGlobalContext();
     const navigate = useNavigate();
 
     const allClickHandler = () => {
@@ -15,7 +15,7 @@ const Navbar = () => {
     }
 
     return (
-        <>
+        <> <div className='nav-bar-container'>
             <nav className="navbar navbar-expand-lg navbar-light bg-light app-navbar">
                 <a className="navbar-brand " href="#" style={{ color: "grey" }} >Bigscreen</a>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,19 +27,19 @@ const Navbar = () => {
                             <a className="nav-link menu-link" href="/">Home <span className="sr-only">(current)</span></a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link menu-link" href="/favourites" >Favourites</a>
+                            <a className="nav-link menu-link scrollable-menu" href="/favourites" >Favourites</a>
                         </li>
-                        <li className="nav-item dropdown">
-                            <a className="nav-link dropdown-toggle menu-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <li className="nav-item dropdown scrollable-menu">
+                            <a className="nav-link dropdown-toggle menu-link " href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Movies
                             </a>
-                            <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <div className="dropdown-menu " aria-labelledby="navbarDropdownMenuLink" style={{ maxHeight: "500px", overflowY: "scroll"}}>
                                 {/* <a className="dropdown-item" onClick={() => allClickHandler()}>All</a> */}
                                 {(movieGenre) ?
 
                                     movieGenre.map((genre, index) => {
                                         return (
-                                            <a className="dropdown-item" key={index} onClick={() => navigate(`/movie/${genre.id}/${genre.name}`)}>{genre.name}</a>
+                                            <a className="dropdown-item genre-dropdown"  key={index} onClick={() => navigate(`/movie/${genre.id}/${genre.name}`)}>{genre.name}</a>
                                         )
 
                                     }) : "loading.."
@@ -52,7 +52,7 @@ const Navbar = () => {
                             <a className="nav-link dropdown-toggle menu-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Tv Shows
                             </a>
-                            <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style={{ maxHeight: "500px", overflowY: "scroll"}}>
                                 {/* <a className="dropdown-item" onClick={() => allClickHandler()}>All</a> */}
                                 {(tvGenre) ?
 
@@ -69,6 +69,8 @@ const Navbar = () => {
                     </ul>
                 </div>
             </nav>
+        </div>
+
         </>
     )
 }
