@@ -198,6 +198,7 @@ a.navbar-brand {
 
 .single-movie-image-container {
     align-self: center;
+    cursor: pointer;
 }
 
 .single-movie-image {
