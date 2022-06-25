@@ -161,6 +161,7 @@ a.navbar-brand {
     height: fit-content;
     width: 100vw;
     padding: 2rem;
+    margin-top: 3rem;
 
 
 }
@@ -326,7 +327,7 @@ a.navbar-brand {
     color: grey;
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 1024px) {
     .single-movie-card-container {
         display: flex;
         flex-direction: row;
