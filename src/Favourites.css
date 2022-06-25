@@ -10,6 +10,7 @@
    
 }
 .fav-text{
+    margin-top: 3.5rem;
     font-size: x-large;
     font-weight: bold;
     color: grey;
@@ -29,6 +30,7 @@
 .fav-image-container{
     height: fit-content;
     width: fit-content;
+    cursor: pointer;
 }
 
 .fav-image{
@@ -87,7 +89,28 @@
     font-weight: bolder;
     color: grey;
 }
-@media only screen and (max-width: 1180px) {
+.fav-back-button-container{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    left: 2rem;
+    align-self: center;
+    top: 28rem;
+    position: fixed;
+
+    
+}
+.fav-back-button {
+    font-size: 3rem;
+    cursor: pointer;
+
+}
+.fav-back-button:hover {
+    color: grey;
+
+}
+@media only screen and (max-width: 1024px) {
     .fav-conatiner-box{
        margin: 0px; 
        
@@ -99,7 +122,7 @@
     .fav-image-container{
         height: fit-content;
         width: fit-content;
-        
+       
        
     }
     .fav-image{
@@ -142,5 +165,17 @@
         font-size: x-large;
         font-weight: bolder;
         color: grey;
+    }
+    .fav-back-button-container{
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content:center;
+        left: 0rem;
+        align-self: center;
+        top: 25rem;
+        position: fixed;
+    
+        
     }
 }

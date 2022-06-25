@@ -178,6 +178,11 @@ a.navbar-brand {
 
 .back-button {
     font-size: 3rem;
+    cursor: pointer;
+
+}
+.back-button:hover {
+    color: grey;
 
 }
 

@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './Favourites.css'
 import Navbar from './Navbar'
-
+import { AiOutlineBackward } from 'react-icons/ai';
 
 const Favourites = () => {
     const getFavData = JSON.parse(localStorage.getItem("fav_movie_id"))
@@ -48,14 +48,19 @@ const Favourites = () => {
 
 
             <div className='fav-text'>Favourites</div>
+            
             <div className='fav-conatiner-box'>
+            <div className='fav-back-button-container'>
+                <AiOutlineBackward className='fav-back-button' onClick={() => navigate(-1)} />
+
+            </div>
                 {
                     (getFavData === null) ?
                         <>
                             <div className='fav-no-data'><span className='no-fav-msg'>No Favourites Found</span>
-                            <div className='no-fav-button'><button onClick={()=> navigate("/explore")} type="button" class="btn btn-secondary ">Find Gems to Add</button></div>
+                                <div className='no-fav-button'><button onClick={() => navigate("/explore")} type="button" class="btn btn-secondary ">Find Gems to Add</button></div>
                             </div>
-                            
+
                         </>
 
                         :
@@ -63,7 +68,7 @@ const Favourites = () => {
                             return (
 
                                 <div className='fav-card'>
-                                    <div className='fav-image-container'>
+                                    <div className='fav-image-container' onClick={() => navigate(`/id/${media.media_type}/${media.id}`)}>
                                         <img className="fav-image" src={`https://image.tmdb.org/t/p/original${media.poster_image}`} alt="..." />
                                     </div>
                                     <div className='fav-media-details'>
@@ -96,6 +101,7 @@ const Favourites = () => {
                         })
                 }
             </div>
+            
 
 
 
