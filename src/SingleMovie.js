@@ -3,15 +3,16 @@ import React from 'react'
 import { useEffect, useState } from 'react'
 import { useParams } from "react-router-dom"
 import { useGlobalContext } from './Context'
+import Navbar from './Navbar'
 
 
 const SingleMovie = () => {
     const params = useParams()
-   
+
     const { id, media_type, movieObj } = params
     //console.log(id, media_type, movieObj)
     let videoType = ""
-   
+
     const FIND_BY_ID_URL = `https://api.themoviedb.org/3/${media_type}/${id}?api_key=e229afd722b6ee38525d46e0b317f72b&language=en-US`
 
 
@@ -80,29 +81,29 @@ const SingleMovie = () => {
         }
 
     }
-    
+
     //console.log("isfav",  isFav)
     const addToFav = async () => {
         const movieId = id
         const mediaType = media_type
         let title = ''
-        let release_date =''
-        if( media_type && media_type == "movie") {
-            title =  SingleMoviedata.original_title
+        let release_date = ''
+        if (media_type && media_type == "movie") {
+            title = SingleMoviedata.original_title
             release_date = releaseDate
-        }else if(media_type) {
-            title =  SingleMoviedata.original_name
+        } else if (media_type) {
+            title = SingleMoviedata.original_name
             release_date = airedDate
         }
         const genres = SingleMoviedata.genres
         const rating = SingleMoviedata.vote_average
         const image = SingleMoviedata.poster_path
-        
+
         console.log("releaseDate:", release_date)
-        
+
         let isExist = false
         const getFavdData = await JSON.parse(localStorage.getItem("fav_movie_id"))
-        let tempObj ={"id": movieId, "media_type": mediaType, "title": title, "genres": genres, "rating": rating, "poster_image":image, "release_date":release_date}
+        let tempObj = { "id": movieId, "media_type": mediaType, "title": title, "genres": genres, "rating": rating, "poster_image": image, "release_date": release_date }
         //console.log("favarr", getFavdData)
         if (getFavdData) {
             let tempArr = [...getFavdData, tempObj]
@@ -160,15 +161,16 @@ const SingleMovie = () => {
         }
 
     }
-   
+
 
 
 
 
     return (
         <>
+            <Navbar />
             {
-                (Object.keys(SingleMoviedata).length === 0 && SingleMoviedata.constructor === Object) ? "Loading...." :
+                (Object.keys(SingleMoviedata).length === 0 && SingleMoviedata.constructor === Object) ? <div className='loading-text'><img src="/fading_circles.gif"/></div> :
 
 
 
@@ -202,7 +204,7 @@ const SingleMovie = () => {
 
 
                                         </div>
-                                        <div className='single-movie-overview'>{(SingleMoviedata.overview)>600?SingleMoviedata.overview.slice(0, 600)+"...": SingleMoviedata.overview}</div>
+                                        <div className='single-movie-overview'>{(SingleMoviedata.overview) > 600 ? SingleMoviedata.overview.slice(0, 600) + "..." : SingleMoviedata.overview}</div>
                                         <div className='single-movie-popularity'><strong>Popularity: </strong><span className='popularity-number'>{SingleMoviedata.popularity}</span></div>
                                         <div className='single-movie-rating'><strong>Rating:  </strong> <span className='rating-detail'>{SingleMoviedata.vote_average}/10 from {SingleMoviedata.vote_count} users</span> </div>
                                         <div className='fav-button'>
@@ -235,7 +237,7 @@ const SingleMovie = () => {
                                         <div className='single-movie-title'>{SingleMoviedata.original_name}<small> ({media_type})</small>
                                             <div className='single-movie-release-date'>({airedDate})</div>
                                         </div>
-                                        <div className='single-movie-overview'>{(SingleMoviedata.overview).length>600?SingleMoviedata.overview.slice(0, 500)+"...": SingleMoviedata.overview}</div>
+                                        <div className='single-movie-overview'>{(SingleMoviedata.overview).length > 600 ? SingleMoviedata.overview.slice(0, 500) + "..." : SingleMoviedata.overview}</div>
                                         <div className='single-movie-popularity'><strong>Popularity: </strong><span className='popularity-number'>{SingleMoviedata.popularity}</span></div>
                                         <div className='single-movie-rating'><strong>Rating:  </strong> <span className='rating-detail'>{SingleMoviedata.vote_average}/10 from {SingleMoviedata.vote_count} users</span> </div>
                                         <div className='fav-button'>

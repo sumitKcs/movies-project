@@ -43,23 +43,25 @@ const Movies = () => {
             <div className='movie-container'>
                 {
                     movieList.map((movieObj, index) => {
+                        if(movieObj.poster_path) {
+                            return (
 
-                        return (
-
-                            <div className="movie-card" key={index} onClick={() => movieClickHandler( movieObj)}>
-                                {/* <FontAwesomeIcon  onClick={ favClickhandler} className= {favIconStyle} icon={solid('heart')}  /> */}
-
-                                <div className='movie-image'>
-                                    {isLoading ? <div className='loading' style={{ width: "14vw", height: "45vh" }}>Loading..</div> :
-                                        <img style={{ width: "100%", height: "100%" }} src={`https://image.tmdb.org/t/p/original${movieObj.poster_path}`} className="card-img-top" alt="..." />}
+                                <div className="movie-card" key={index} onClick={() => movieClickHandler( movieObj)}>
+                                    {/* <FontAwesomeIcon  onClick={ favClickhandler} className= {favIconStyle} icon={solid('heart')}  /> */}
+    
+                                    <div className='movie-image'>
+                                        {isLoading ? <div className='loading' style={{ width: "14vw", height: "45vh" }}>Loading..</div> :
+                                            <img style={{ width: "100%", height: "100%" }} src={`https://image.tmdb.org/t/p/original${movieObj.poster_path}`} className="card-img-top" alt="..." />}
+                                    </div>
+    
+                                    <div className="movie-title" >
+                                        {/* <p className='card-text movie-title'>{movieObj.original_title}</p> */}
+                                    </div>
                                 </div>
-
-                                <div className="movie-title" >
-                                    {/* <p className='card-text movie-title'>{movieObj.original_title}</p> */}
-                                </div>
-                            </div>
-
-                        )
+    
+                            )
+                        }
+                       
 
                     })
                 }

@@ -72,8 +72,9 @@ const AppProvider = ({ children }) => {
 
             } catch (error) {
                 console.log(error)
+                alert("check your internet")
             } finally {
-                setDynamicText(`Search Result For${searchValue}`)
+                setDynamicText(`Search Result For ${searchValue}`)
             }
         }
         else if (toShow === "default") {
