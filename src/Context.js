@@ -19,6 +19,7 @@ const AppProvider = ({ children }) => {
     const [searchValue, setSearchValue] = useState("");
     const [fetchGenre, setFetchGenre] = useState(true)
     const [toShow, setToShow] = useState("default")
+    const [mediaType, setMediaType] = useState();
     const Tv_Genre_List_URL = `https://api.themoviedb.org/3/genre/tv/list?api_key=e229afd722b6ee38525d46e0b317f72b`
 
     const Movie_Genre_List_URL = `https://api.themoviedb.org/3/genre/movie/list?api_key=e229afd722b6ee38525d46e0b317f72b`
@@ -26,34 +27,56 @@ const AppProvider = ({ children }) => {
     useEffect(() => {
         if (toShow === "genre") {
             console.log("hii I am genre page of ", genrePage)
-            
-        try {
-            setDynamicText("Loading.....")
-            console.log("home:", genrePage.genre_id)
-            const Movie_Genre_Search_URL = `https://api.themoviedb.org/3/discover/${genrePage.media_type}?api_key=e229afd722b6ee38525d46e0b317f72b&with_genres=${genrePage.genre_id}&page=${page}`
-            const genreClickHandler = async () => {
-              const res = await axios.get(Movie_Genre_Search_URL)
-              //console.log(res.data)
-              const data = res.data.results
-              console.log(res)
-              setMovieList(data)
-              const totalPages = res.data.total_pages
-              setTotalPage(totalPages)
-              
-              //console.log("total  pages:", res.data.total_pages)
+
+            try {
+                setDynamicText("Loading.....")
+                console.log("home:", genrePage.genre_id)
+                const Movie_Genre_Search_URL = `https://api.themoviedb.org/3/discover/${genrePage.media_type}?api_key=e229afd722b6ee38525d46e0b317f72b&with_genres=${genrePage.genre_id}&page=${page}`
+                const genreClickHandler = async () => {
+                    const res = await axios.get(Movie_Genre_Search_URL)
+                    //console.log(res.data)
+                    const data = res.data.results
+                    console.log(res)
+                    setMovieList(data)
+                    const totalPages = res.data.total_pages
+                    setTotalPage(totalPages)
+
+                    //console.log("total  pages:", res.data.total_pages)
+                }
+
+                genreClickHandler()
+
+            } catch (error) {
+                console.log(error)
+            } finally {
+                setDynamicText(genrePage.genre_name)
             }
-      
-            genreClickHandler()
-      
-          } catch (error) {
-            console.log(error)
-          }finally{
-            setDynamicText(genrePage.genre_name)
-          }
-        }else if(toShow === "search") {
-                console.log("i i am search data")
+        } else if (toShow === "search") {
+            console.log("i i am search data")
+            try {
+                const SEARCH_URL = `https://api.themoviedb.org/3/search/multi?api_key=e229afd722b6ee38525d46e0b317f72b&language=en-US&query=${searchValue}&page=${page}`
+                setDynamicText("Loading.....")
+                const searchHandler = async () => {
+                    const res = await axios.get(SEARCH_URL)
+                    //console.log(res.data)
+                    const data = res.data.results
+                    console.log(res)
+                    setMovieList(data)
+                    const totalPages = res.data.total_pages
+                    setTotalPage(totalPages)
+
+                    //console.log("total  pages:", res.data.total_pages)
+                }
+
+                searchHandler()
+
+            } catch (error) {
+                console.log(error)
+            } finally {
+                setDynamicText(`Search Result For${searchValue}`)
+            }
         }
-        else if(toShow === "default"){
+        else if (toShow === "default") {
             console.log("hii i am default")
             URL = `https://api.themoviedb.org/3/trending/all/week?api_key=e229afd722b6ee38525d46e0b317f72b&page=${page}`
 
@@ -82,8 +105,8 @@ const AppProvider = ({ children }) => {
                 setDynamicText("Trending")
             }
         }
-        
-        if(fetchGenre) {
+
+        if (fetchGenre) {
             try {
                 const getTvGenreData = async () => {
                     const res = await axios.get(Tv_Genre_List_URL)
@@ -92,9 +115,9 @@ const AppProvider = ({ children }) => {
                     setTvGenre(data)
                     // console.log(data)
                 }
-    
+
                 getTvGenreData()
-    
+
             } catch (error) {
                 console.log(error)
             }
@@ -107,9 +130,9 @@ const AppProvider = ({ children }) => {
                     // console.log(data)
                     setMovieGenre(data)
                 }
-    
+
                 getMovieGenreData()
-    
+
             } catch (error) {
                 console.log(error)
             }
@@ -117,16 +140,16 @@ const AppProvider = ({ children }) => {
             setFetchGenre(false)
         }
 
-        
-
-       
 
 
 
-    }, [page,genrePage, searchValue]);
 
 
-    return <AppContext.Provider value={{ movieList, topMovie, totalPage, isLoading, page, setPage, movieGenre, tvGenre, setMovieList, setTotalPage, setGenrePage, dynamicText, setSearchValue, setToShow}}>{children}</AppContext.Provider>
+
+    }, [page, genrePage, searchValue]);
+
+
+    return <AppContext.Provider value={{ movieList, topMovie, totalPage, isLoading, page, setPage, movieGenre, tvGenre, setMovieList, setTotalPage, setGenrePage, dynamicText, setSearchValue, setToShow, setDynamicText, setMediaType, mediaType }}>{children}</AppContext.Provider>
 };
 
 //global custom hook

@@ -6,15 +6,18 @@ import { useParams } from 'react-router-dom'
 import { useGlobalContext } from './Context'
 
 const Navbar = () => {
-    const { movieGenre, tvGenre } = useGlobalContext();
+    const { movieGenre, tvGenre, setDynamicText} = useGlobalContext();
     const navigate = useNavigate();
- 
-  
+
+    const allClickHandler = () => {
+        setDynamicText("All")
+        navigate('/all')
+    }
 
     return (
         <>
             <nav className="navbar navbar-expand-lg navbar-light bg-light app-navbar">
-                <a className="navbar-brand " href="#" style={{color: "grey"}} >Bigscreen</a>
+                <a className="navbar-brand " href="#" style={{ color: "grey" }} >Bigscreen</a>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
@@ -31,6 +34,7 @@ const Navbar = () => {
                                 Movies
                             </a>
                             <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                {/* <a className="dropdown-item" onClick={() => allClickHandler()}>All</a> */}
                                 {(movieGenre) ?
 
                                     movieGenre.map((genre, index) => {
@@ -49,11 +53,12 @@ const Navbar = () => {
                                 Tv Shows
                             </a>
                             <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                {/* <a className="dropdown-item" onClick={() => allClickHandler()}>All</a> */}
                                 {(tvGenre) ?
 
                                     tvGenre.map((genre, index) => {
                                         return (
-                                            <a className="dropdown-item" key={index} onClick={()=> navigate(`/tv/${genre.id}/${genre.name}`)}>{genre.name}</a>
+                                            <a className="dropdown-item" key={index} onClick={() => navigate(`/tv/${genre.id}/${genre.name}`)}>{genre.name}</a>
                                         )
 
                                     }) : "loading.."

@@ -5,7 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from 'react';
 
 const Movies = () => {
-    const {movieList,  totalPage , dynamicText} = useGlobalContext()
+    const {movieList,  totalPage , dynamicText, mediaType} = useGlobalContext()
     const [isLoading, setIsLoading] = useState(false)
     const [page, setPage] = useState(1)
     const navigate = useNavigate()
@@ -17,10 +17,17 @@ const Movies = () => {
         await movieClickHandler()
     }
 
-    const movieClickHandler = async (id, media_type) => {
+    const movieClickHandler = async (movieObj) => {
+        const id = movieObj.id
+        let videoType = "";
+        if(movieObj.media_type) {
+            videoType = movieObj.media_type
+        } else {
+            videoType = mediaType;
+        }
         setIsLoading(true)
-        //console.log("movie click hanleer id", id)
-        navigate(`/id/${media_type}/${id}`)
+        console.log("movie obj", movieObj)
+        navigate(`/id/${videoType}/${id}`)
       
     }
 
@@ -39,7 +46,7 @@ const Movies = () => {
 
                         return (
 
-                            <div className="movie-card" key={index} onClick={() => movieClickHandler(movieObj.id,  movieObj.media_type)}>
+                            <div className="movie-card" key={index} onClick={() => movieClickHandler( movieObj)}>
                                 {/* <FontAwesomeIcon  onClick={ favClickhandler} className= {favIconStyle} icon={solid('heart')}  /> */}
 
                                 <div className='movie-image'>

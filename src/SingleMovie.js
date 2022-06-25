@@ -2,12 +2,16 @@ import axios from 'axios'
 import React from 'react'
 import { useEffect, useState } from 'react'
 import { useParams } from "react-router-dom"
+import { useGlobalContext } from './Context'
 
 
 const SingleMovie = () => {
     const params = useParams()
-    const { id, media_type } = params
-    //console.log(id, media_type)
+   
+    const { id, media_type, movieObj } = params
+    //console.log(id, media_type, movieObj)
+    let videoType = ""
+   
     const FIND_BY_ID_URL = `https://api.themoviedb.org/3/${media_type}/${id}?api_key=e229afd722b6ee38525d46e0b317f72b&language=en-US`
 
 

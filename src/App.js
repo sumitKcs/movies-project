@@ -24,6 +24,8 @@ const App = () => {
         <Route path="/explore" element={<AddFavourites />} />
         <Route path="/:media_type/:genre_id/:genre_name" element={<SearchGenre/>} />
         <Route path="/:genre_name" element={<Home/>} />
+        <Route path="/all" element={<Home/>} />
+        
        
         <Route path="*" element={<Error />} />
       </Routes>

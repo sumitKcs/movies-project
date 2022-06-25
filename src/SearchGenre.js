@@ -17,13 +17,14 @@ import { useGlobalContext } from './Context'
 
 const SearchGenre = () => {
   
-  const { setGenrePage, setToShow} = useGlobalContext()
+  const { setGenrePage, setToShow, setMediaType} = useGlobalContext()
   const { media_type, genre_id, genre_name } = useParams()
   const navigate = useNavigate()
  
 
   useEffect(()=> {
     if(genre_name) {
+      setMediaType(media_type)
       setGenrePage({"media_type": media_type, "genre_id":genre_id,"genre_name":genre_name })
       setToShow("genre")
       navigate(`/${genre_name}`)
