@@ -33,7 +33,7 @@ const Navbar = () => {
                             <a className="nav-link dropdown-toggle menu-link " href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Movies
                             </a>
-                            <div className="dropdown-menu " aria-labelledby="navbarDropdownMenuLink" style={{ maxHeight: "500px", overflowY: "scroll"}}>
+                            <div className="dropdown-menu " aria-labelledby="navbarDropdownMenuLink" >
                                 {/* <a className="dropdown-item" onClick={() => allClickHandler()}>All</a> */}
                                 {(movieGenre) ?
 
@@ -52,7 +52,7 @@ const Navbar = () => {
                             <a className="nav-link dropdown-toggle menu-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Tv Shows
                             </a>
-                            <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style={{ maxHeight: "500px", overflowY: "scroll"}}>
+                            <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" >
                                 {/* <a className="dropdown-item" onClick={() => allClickHandler()}>All</a> */}
                                 {(tvGenre) ?
 

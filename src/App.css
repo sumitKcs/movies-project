@@ -460,8 +460,8 @@ a.navbar-brand {
         font-weight: bolder;
         color: grey;
     }
-    .genre-dropdown{
-        height: min-content;
+    .dropdown-menu{
+        height: 400px;
         overflow-y: scroll;
     }
    
