@@ -180,6 +180,7 @@ const SingleMovie = () => {
                                     <div className='single-movie-details'>
                                         <div className='single-movie-title'>{SingleMoviedata.original_title}<small> ({media_type})</small>
                                             <div className='single-movie-release-date'>({releaseDate})</div>
+                                            <div className='single-movie-runtime'>({SingleMoviedata.runtime} min)</div>
                                         </div>
                                         <div className='single-movie-genre-container'>
                                             <strong>Genre: </strong>

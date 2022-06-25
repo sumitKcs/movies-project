@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { useGlobalContext } from './Context';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { useEffect } from 'react';
 
 const Movies = () => {
-    const contextData = useGlobalContext()
-    const movieList = contextData.movieList
-    const totalPage = contextData.totalPage
+    const {movieList,  totalPage , dynamicText} = useGlobalContext()
     const [isLoading, setIsLoading] = useState(false)
     const [page, setPage] = useState(1)
     const navigate = useNavigate()
+    
 
     const pageClickHandler = async (selectedPage) => {
         let currPage = selectedPage.selected + 1
@@ -29,7 +29,7 @@ const Movies = () => {
     return (
 
         <>
-            <div className='trending-text'> Trending</div>
+            <div className='trending-text'> {dynamicText}</div>
 
 
 
