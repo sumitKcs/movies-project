@@ -20,6 +20,7 @@ const AppProvider = ({ children }) => {
     const [fetchGenre, setFetchGenre] = useState(true)
     const [toShow, setToShow] = useState("default")
     const [mediaType, setMediaType] = useState();
+    const [timeOutID, setTimeOutId] = useState();
     const Tv_Genre_List_URL = `https://api.themoviedb.org/3/genre/tv/list?api_key=e229afd722b6ee38525d46e0b317f72b`
 
     const Movie_Genre_List_URL = `https://api.themoviedb.org/3/genre/movie/list?api_key=e229afd722b6ee38525d46e0b317f72b`
@@ -53,29 +54,34 @@ const AppProvider = ({ children }) => {
             }
         } else if (toShow === "search") {
             console.log("i i am search data")
-            try {
-                const SEARCH_URL = `https://api.themoviedb.org/3/search/multi?api_key=e229afd722b6ee38525d46e0b317f72b&language=en-US&query=${searchValue}&page=${page}`
-                setDynamicText("Loading.....")
-                const searchHandler = async () => {
-                    const res = await axios.get(SEARCH_URL)
-                    //console.log(res.data)
-                    const data = res.data.results
-                    console.log(res)
-                    setMovieList(data)
-                    const totalPages = res.data.total_pages
-                    setTotalPage(totalPages)
-
-                    //console.log("total  pages:", res.data.total_pages)
+            const timeclearId = setTimeout(() => {
+                try {
+                    const SEARCH_URL = `https://api.themoviedb.org/3/search/multi?api_key=e229afd722b6ee38525d46e0b317f72b&language=en-US&query=${searchValue}&page=${page}`
+                    setDynamicText("Loading.....")
+                    const searchHandler = async () => {
+                        const res = await axios.get(SEARCH_URL)
+                        //console.log(res.data)
+                        const data = res.data.results
+                        console.log(res)
+                        setMovieList(data)
+                        const totalPages = res.data.total_pages
+                        setTotalPage(totalPages)
+    
+                        //console.log("total  pages:", res.data.total_pages)
+                    }
+    
+                    searchHandler()
+    
+                } catch (error) {
+                    console.log(error)
+                    alert("check your internet")
+                } finally {
+                    setDynamicText(`Search Result For ${searchValue}`)
                 }
+            }, 1000);
 
-                searchHandler()
 
-            } catch (error) {
-                console.log(error)
-                alert("check your internet")
-            } finally {
-                setDynamicText(`Search Result For ${searchValue}`)
-            }
+            return() => clearTimeout(timeclearId)
         }
         else if (toShow === "default") {
             console.log("hii i am default")
@@ -145,12 +151,12 @@ const AppProvider = ({ children }) => {
 
 
 
-
+        
 
     }, [page, genrePage, searchValue]);
 
 
-    return <AppContext.Provider value={{ movieList, topMovie, totalPage, isLoading, page, setPage, movieGenre, tvGenre, setMovieList, setTotalPage, setGenrePage, dynamicText, setSearchValue, setToShow, setDynamicText, setMediaType, mediaType }}>{children}</AppContext.Provider>
+    return <AppContext.Provider value={{ movieList, topMovie, totalPage, isLoading, page, setPage, movieGenre, tvGenre, setMovieList, setTotalPage, setGenrePage, dynamicText, setSearchValue, setToShow, setDynamicText, setMediaType, mediaType,setTimeOutId }}>{children}</AppContext.Provider>
 };
 
 //global custom hook

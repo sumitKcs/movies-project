@@ -8,21 +8,25 @@ const Search = () => {
     const { setSearchValue, setToShow } = useGlobalContext()
     const [inputValue, setInputValue] = useState("")
     const onChangehandler = (e) => {
+        // let timeId;
         let val = e.target.value
-        console.log(val)
+       // console.log(val)
         setInputValue(val)
         if (val.length >= 3) {
-            setTimeout(() => {
-                setToShow("search")
-                setSearchValue(val)
-            }, 3000)
+            //    const timeId =  setTimeout(() => {
+            //         setToShow("search")
+            //         setSearchValue(val)
+            //     }, 3000)
+
+            setToShow("search")
+            setSearchValue(val)
         }
     }
-    
-   
+
+
     return (
         <> <div className='search-container'>
-            <FiSearch className='search-icon'/>
+            <FiSearch className='search-icon' />
             <input className='searchBox' value={inputValue} type="text" placeholder="Money Heist, Spiderman" onChange={(e) => onChangehandler(e)} />
         </div>
         </>
