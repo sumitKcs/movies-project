@@ -1,4 +1,5 @@
 import React from 'react'
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './Error.scss'
 const Error = () => {

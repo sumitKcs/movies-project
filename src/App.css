@@ -335,6 +335,8 @@ a.navbar-brand {
 }
 
 @media only screen and (max-width: 1024px) {
+    
+    
     .single-movie-card-container {
         display: flex;
         flex-direction: row;
@@ -430,7 +432,7 @@ a.navbar-brand {
 
     }
 
-    .back-button-container {}
+    /* .back-button-container {} */
 
 
     .footer-container {

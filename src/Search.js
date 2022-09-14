@@ -7,17 +7,14 @@ const SEARCH_URL = `https://api.themoviedb.org/3/search/multi?api_key=e229afd722
 const Search = () => {
     const { setSearchValue, setToShow } = useGlobalContext()
     const [inputValue, setInputValue] = useState("")
+    
     const onChangehandler = (e) => {
-        // let timeId;
+       
         let val = e.target.value
-       // console.log(val)
+       
         setInputValue(val)
         if (val.length >= 3) {
-            //    const timeId =  setTimeout(() => {
-            //         setToShow("search")
-            //         setSearchValue(val)
-            //     }, 3000)
-
+        
             setToShow("search")
             setSearchValue(val)
         }

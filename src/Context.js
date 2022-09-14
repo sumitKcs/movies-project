@@ -7,174 +7,187 @@ import axios from "axios";
 const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
-    const [page, setPage] = useState(1);
-    const [isLoading, setIsLoading] = useState(false)
-    const [topMovie, setTopMovie] = useState([])
-    const [movieList, setMovieList] = useState([])
-    const [totalPage, setTotalPage] = useState(1)
-    const [movieGenre, setMovieGenre] = useState();
-    const [tvGenre, setTvGenre] = useState();
-    const [genrePage, setGenrePage] = useState();
-    const [dynamicText, setDynamicText] = useState("Trending");
-    const [searchValue, setSearchValue] = useState("");
-    const [fetchGenre, setFetchGenre] = useState(true)
-    const [toShow, setToShow] = useState("default")
-    const [mediaType, setMediaType] = useState();
-    const [timeOutID, setTimeOutId] = useState();
-    const Tv_Genre_List_URL = `https://api.themoviedb.org/3/genre/tv/list?api_key=e229afd722b6ee38525d46e0b317f72b`
+  const [page, setPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
+  const [topMovie, setTopMovie] = useState([]);
+  const [movieList, setMovieList] = useState([]);
+  const [totalPage, setTotalPage] = useState(1);
+  const [movieGenre, setMovieGenre] = useState();
+  const [tvGenre, setTvGenre] = useState();
+  const [genrePage, setGenrePage] = useState();
+  const [dynamicText, setDynamicText] = useState("Trending");
+  const [searchValue, setSearchValue] = useState("");
+  const [fetchGenre, setFetchGenre] = useState(true);
+  const [toShow, setToShow] = useState("default");
+  const [mediaType, setMediaType] = useState();
+  const [timeOutID, setTimeOutId] = useState();
+  const Tv_Genre_List_URL = `https://api.themoviedb.org/3/genre/tv/list?api_key=e229afd722b6ee38525d46e0b317f72b`;
 
-    const Movie_Genre_List_URL = `https://api.themoviedb.org/3/genre/movie/list?api_key=e229afd722b6ee38525d46e0b317f72b`
-    let URL = "";
-    useEffect(() => {
-        if (toShow === "genre") {
-            console.log("hii I am genre page of ", genrePage)
+  const Movie_Genre_List_URL = `https://api.themoviedb.org/3/genre/movie/list?api_key=e229afd722b6ee38525d46e0b317f72b`;
+  let URL = "";
+  useEffect(() => {
+    if (toShow === "genre") {
+      console.log("hii I am genre page of ", genrePage);
 
-            try {
-                setDynamicText("Loading.....")
-                console.log("home:", genrePage.genre_id)
-                const Movie_Genre_Search_URL = `https://api.themoviedb.org/3/discover/${genrePage.media_type}?api_key=e229afd722b6ee38525d46e0b317f72b&with_genres=${genrePage.genre_id}&page=${page}`
-                const genreClickHandler = async () => {
-                    const res = await axios.get(Movie_Genre_Search_URL)
-                    //console.log(res.data)
-                    const data = res.data.results
-                    console.log(res)
-                    setMovieList(data)
-                    const totalPages = res.data.total_pages
-                    setTotalPage(totalPages)
+      try {
+        setDynamicText("Loading.....");
+        console.log("home:", genrePage.genre_id);
+        const Movie_Genre_Search_URL = `https://api.themoviedb.org/3/discover/${genrePage.media_type}?api_key=e229afd722b6ee38525d46e0b317f72b&with_genres=${genrePage.genre_id}&page=${page}`;
+        const genreClickHandler = async () => {
+          const res = await axios.get(Movie_Genre_Search_URL);
+          //console.log(res.data)
+          const data = res.data.results;
+          console.log(res);
+          setMovieList(data);
+          const totalPages = res.data.total_pages;
+          setTotalPage(totalPages);
 
-                    //console.log("total  pages:", res.data.total_pages)
-                }
+          //console.log("total  pages:", res.data.total_pages)
+        };
 
-                genreClickHandler()
+        genreClickHandler();
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setDynamicText(genrePage.genre_name);
+      }
+    } else if (toShow === "search") {
+      console.log("i i am search data");
+      const timeclearId = setTimeout(() => {
+        try {
+          const SEARCH_URL = `https://api.themoviedb.org/3/search/multi?api_key=e229afd722b6ee38525d46e0b317f72b&language=en-US&query=${searchValue}&page=${page}`;
+          setDynamicText("Loading.....");
+          const searchHandler = async () => {
+            const res = await axios.get(SEARCH_URL);
+            //console.log(res.data)
+            const data = res.data.results;
+            console.log(res);
+            setMovieList(data);
+            const totalPages = res.data.total_pages;
+            setTotalPage(totalPages);
 
-            } catch (error) {
-                console.log(error)
-            } finally {
-                setDynamicText(genrePage.genre_name)
-            }
-        } else if (toShow === "search") {
-            console.log("i i am search data")
-            const timeclearId = setTimeout(() => {
-                try {
-                    const SEARCH_URL = `https://api.themoviedb.org/3/search/multi?api_key=e229afd722b6ee38525d46e0b317f72b&language=en-US&query=${searchValue}&page=${page}`
-                    setDynamicText("Loading.....")
-                    const searchHandler = async () => {
-                        const res = await axios.get(SEARCH_URL)
-                        //console.log(res.data)
-                        const data = res.data.results
-                        console.log(res)
-                        setMovieList(data)
-                        const totalPages = res.data.total_pages
-                        setTotalPage(totalPages)
-    
-                        //console.log("total  pages:", res.data.total_pages)
-                    }
-    
-                    searchHandler()
-    
-                } catch (error) {
-                    console.log(error)
-                    alert("check your internet")
-                } finally {
-                    setDynamicText(`Search Result For ${searchValue}`)
-                }
-            }, 1000);
+            //console.log("total  pages:", res.data.total_pages)
+          };
 
-
-            return() => clearTimeout(timeclearId)
+          searchHandler();
+        } catch (error) {
+          console.log(error);
+          alert("check your internet");
+        } finally {
+          setDynamicText(`Search Result For ${searchValue}`);
         }
-        else if (toShow === "default") {
-            console.log("hii i am default")
-            URL = `https://api.themoviedb.org/3/trending/all/week?api_key=e229afd722b6ee38525d46e0b317f72b&page=${page}`
+      }, 1000);
 
-            try {
-                const getMoviesdata = async () => {
-                    setIsLoading(true)
-                    setDynamicText("Loading.....")
-                    const res = await axios.get(URL)
-                    //console.log(res.data)
-                    const data = res.data.results
-                    setIsLoading(false)
-                    setTotalPage(res.data.total_pages)
-                    setMovieList([...data])
-                    if (page === 1) {
+      return () => clearTimeout(timeclearId);
+    } else if (toShow === "default") {
+      console.log("hii i am default");
+      URL = `https://api.themoviedb.org/3/trending/all/week?api_key=e229afd722b6ee38525d46e0b317f72b&page=${page}`;
 
-                        setTopMovie([{ mydata: data[0] }])
-                    }
-                }
+      try {
+        const getMoviesdata = async () => {
+          setIsLoading(true);
+          setDynamicText("Loading.....");
+          const res = await axios.get(URL);
+          //console.log(res.data)
+          const data = res.data.results;
+          setIsLoading(false);
+          setTotalPage(res.data.total_pages);
+          setMovieList([...data]);
+          if (page === 1) {
+            setTopMovie([{ mydata: data[0] }]);
+          }
+        };
 
-                getMoviesdata()
+        getMoviesdata();
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setIsLoading(false);
+        setDynamicText("Trending");
+      }
+    }
 
-            } catch (error) {
-                console.log(error)
-            } finally {
-                setIsLoading(false)
-                setDynamicText("Trending")
-            }
-        }
+    if (fetchGenre) {
+      try {
+        const getTvGenreData = async () => {
+          const res = await axios.get(Tv_Genre_List_URL);
+          //console.log(res.data)
+          const data = res.data.genres;
+          setTvGenre(data);
+          // console.log(data)
+        };
 
-        if (fetchGenre) {
-            try {
-                const getTvGenreData = async () => {
-                    const res = await axios.get(Tv_Genre_List_URL)
-                    //console.log(res.data)
-                    const data = res.data.genres
-                    setTvGenre(data)
-                    // console.log(data)
-                }
+        getTvGenreData();
+      } catch (error) {
+        console.log(error);
+      }
 
-                getTvGenreData()
+      try {
+        const getMovieGenreData = async () => {
+          const res = await axios.get(Movie_Genre_List_URL);
+          //console.log(res.data)
+          const data = res.data.genres;
+          // console.log(data)
+          setMovieGenre(data);
+        };
 
-            } catch (error) {
-                console.log(error)
-            }
+        getMovieGenreData();
+      } catch (error) {
+        console.log(error);
+      }
 
-            try {
-                const getMovieGenreData = async () => {
-                    const res = await axios.get(Movie_Genre_List_URL)
-                    //console.log(res.data)
-                    const data = res.data.genres
-                    // console.log(data)
-                    setMovieGenre(data)
-                }
+      setFetchGenre(false);
+    }
+  }, [page, genrePage, searchValue]);
 
-                getMovieGenreData()
-
-            } catch (error) {
-                console.log(error)
-            }
-
-            setFetchGenre(false)
-        }
-
-
-
-
-
-        
-
-    }, [page, genrePage, searchValue]);
-
-
-    return <AppContext.Provider value={{ movieList, topMovie, totalPage, isLoading, page, setPage, movieGenre, tvGenre, setMovieList, setTotalPage, setGenrePage, dynamicText, setSearchValue, setToShow, setDynamicText, setMediaType, mediaType,setTimeOutId }}>{children}</AppContext.Provider>
+  return (
+    <AppContext.Provider
+      value={{
+        movieList,
+        topMovie,
+        totalPage,
+        isLoading,
+        page,
+        setPage,
+        movieGenre,
+        tvGenre,
+        setMovieList,
+        setTotalPage,
+        setGenrePage,
+        dynamicText,
+        setSearchValue,
+        setToShow,
+        setDynamicText,
+        setMediaType,
+        mediaType,
+        setTimeOutId,
+      }}
+    >
+      {children}
+    </AppContext.Provider>
+  );
 };
 
 //global custom hook
 const useGlobalContext = () => {
-    return useContext(AppContext)
-}
+  return useContext(AppContext);
+};
 
 const setLocalStorageData = (obj) => {
-    localStorage.setItem(JSON.stringify(obj))
-}
+  localStorage.setItem(JSON.stringify(obj));
+};
 const getLocalStorageData = (key) => {
-    localStorage.getItem(key)
-}
+  localStorage.getItem(key);
+};
 const removeLocalStorageData = (key) => {
-    localStorage.removeItem(key)
-}
+  localStorage.removeItem(key);
+};
 
-
-
-
-export { AppContext, AppProvider, useGlobalContext, setLocalStorageData, getLocalStorageData, removeLocalStorageData }
+export {
+  AppContext,
+  AppProvider,
+  useGlobalContext,
+  setLocalStorageData,
+  getLocalStorageData,
+  removeLocalStorageData,
+};
