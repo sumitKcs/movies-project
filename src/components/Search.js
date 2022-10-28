@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useGlobalContext } from "../context/Context";
 import { FiSearch } from "react-icons/fi";
 
-const SEARCH_URL = `https://api.themoviedb.org/3/search/multi?api_key=e229afd722b6ee38525d46e0b317f72b&language=en-US&query=doctor&page=1`;
+// const SEARCH_URL = `https://api.themoviedb.org/3/search/multi?api_key=e229afd722b6ee38525d46e0b317f72b&language=en-US&query=doctor&page=1`;
 const Search = () => {
   const { setSearchValue, setToShow } = useGlobalContext();
   const [inputValue, setInputValue] = useState("");

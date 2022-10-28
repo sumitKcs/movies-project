@@ -1,5 +1,4 @@
 import React from "react";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Favourites.css";
 import Navbar from "./Navbar";
@@ -20,8 +19,8 @@ const Favourites = () => {
       localStorage.removeItem("fav_movie_id");
     } else {
       for (let i in getFavdData) {
-        if (getFavdData[i]["id"] == id) {
-          if (i == 0) {
+        if (getFavdData[i]["id"] === id) {
+          if (i === 0) {
             const tempArr = [...getFavdData];
             tempArr.shift();
             console.log("removed array from index 0", tempArr);
@@ -97,13 +96,13 @@ const Favourites = () => {
                   <div className="fav-genre-container">
                     <strong>Genre: </strong>
                     {media.genres.map((genres, idx) => {
-                      for (let genre in genres) {
-                        return (
-                          <span className="fav-genre" key={idx}>
-                            {genres.name}{" "}
-                          </span>
-                        );
-                      }
+                      // for (let genre in genres) {
+                      return (
+                        <span className="fav-genre" key={idx}>
+                          {genres.name}{" "}
+                        </span>
+                      );
+                      // }
                     })}
                   </div>
                   <button

@@ -10,18 +10,30 @@ const Footer = () => {
       <div className="copyright">&copy; {year}</div>
       <div className="social_icons">
         <div className="facebook">
-          <a href="https://www.facebook.com/risesumit" target="_blank">
+          <a
+            href="https://www.facebook.com/risesumit"
+            target="_blank"
+            rel="noreferrer"
+          >
             <BsFacebook />
           </a>
         </div>
         <div className="instagram">
           {" "}
-          <a href="https://www.instagram.com/rise_sumit/" target="_blank">
+          <a
+            href="https://www.instagram.com/rise_sumit/"
+            target="_blank"
+            rel="noreferrer"
+          >
             <AiFillInstagram />
           </a>
         </div>
         <div className="linkedin">
-          <a href="https://www.linkedin.com/in/sumitssr/" target="_blank">
+          <a
+            href="https://www.linkedin.com/in/sumitssr/"
+            target="_blank"
+            rel="noreferrer"
+          >
             <BsLinkedin />
           </a>
         </div>

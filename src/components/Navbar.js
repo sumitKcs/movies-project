@@ -1,25 +1,26 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { useEffect } from "react";
-import { useParams } from "react-router-dom";
 import { useGlobalContext } from "../context/Context";
 
 const Navbar = () => {
-  const { movieGenre, tvGenre, setDynamicText } = useGlobalContext();
+  const { movieGenre, tvGenre } = useGlobalContext();
   const navigate = useNavigate();
 
-  const allClickHandler = () => {
-    setDynamicText("All");
-    navigate("/all");
-  };
+  // const allClickHandler = () => {
+  //   setDynamicText("All");
+  //   navigate("/all");
+  // };
 
   return (
     <>
       {" "}
       <div className="nav-bar-container">
         <nav className="navbar navbar-expand-lg navbar-light bg-light app-navbar">
-          <a className="navbar-brand " href="#" style={{ color: "grey" }}>
+          <a
+            className="navbar-brand "
+            href={`${process.env.REACT_APP_WEB_URL}`}
+            style={{ color: "grey" }}
+          >
             Bigscreen
           </a>
           <button

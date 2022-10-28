@@ -4,11 +4,12 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Navbar from "./Navbar";
 import { AiOutlineBackward } from "react-icons/ai";
+import loadingImage from "../assets/Fading_circles.gif";
 
 const SingleMovie = () => {
   const params = useParams();
   const navigate = useNavigate();
-  const { id, media_type, movieObj } = params;
+  const { id, media_type } = params;
   //console.log(id, media_type, movieObj)
 
   const FIND_BY_ID_URL = `https://api.themoviedb.org/3/${media_type}/${id}?api_key=e229afd722b6ee38525d46e0b317f72b&language=en-US`;
@@ -82,7 +83,7 @@ const SingleMovie = () => {
     const mediaType = media_type;
     let title = "";
     let release_date = "";
-    if (media_type && media_type == "movie") {
+    if (media_type && media_type === "movie") {
       title = SingleMoviedata.original_title;
       release_date = releaseDate;
     } else if (media_type) {
@@ -111,7 +112,7 @@ const SingleMovie = () => {
       let tempArr = [...getFavdData, tempObj];
       console.log("temparr:", tempArr);
       for (let i = 0; i < getFavdData.length; i++) {
-        if (getFavdData[i]["id"] == id) {
+        if (getFavdData[i]["id"] === id) {
           console.log("duplicate id", id);
           isExist = true;
           break;
@@ -138,7 +139,7 @@ const SingleMovie = () => {
       localStorage.removeItem("fav_movie_id");
     } else {
       for (let i in getFavdData) {
-        if (getFavdData[i]["id"] == id) {
+        if (getFavdData[i]["id"] === id) {
           if (i == 0) {
             const tempArr = [...getFavdData];
             tempArr.shift();
@@ -164,7 +165,7 @@ const SingleMovie = () => {
       {Object.keys(SingleMoviedata).length === 0 &&
       SingleMoviedata.constructor === Object ? (
         <div className="loading-text">
-          <img src="/fading_circles.gif" />
+          <img src={loadingImage} />
         </div>
       ) : media_type == "movie" ? (
         <>

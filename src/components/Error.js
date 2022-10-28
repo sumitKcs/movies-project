@@ -1,5 +1,4 @@
 import React from "react";
-import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Error.scss";
 const Error = () => {
@@ -13,7 +12,7 @@ const Error = () => {
             <img
               className="error-page-image"
               src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4424790/Mirror.png"
-              alt="404 Image"
+              alt="404"
             />
           </aside>
           <main className="error-page-msg-container">

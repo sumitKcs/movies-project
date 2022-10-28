@@ -1,18 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import { useGlobalContext } from "../context/Context";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import loadingImage from "../assets/Fading_circles.gif";
 
 const Movies = () => {
-  const { movieList, totalPage, dynamicText, mediaType } = useGlobalContext();
-  const [isLoading, setIsLoading] = useState(false);
-  const [page, setPage] = useState(1);
+  const { movieList, dynamicText, mediaType, isLoading } = useGlobalContext();
+  // const [page, setPage] = useState(1);
   const navigate = useNavigate();
 
-  const pageClickHandler = async (selectedPage) => {
-    let currPage = selectedPage.selected + 1;
-    setPage(currPage);
-    await movieClickHandler();
-  };
+  // const pageClickHandler = async (selectedPage) => {
+  //   let currPage = selectedPage.selected + 1;
+  //   setPage(currPage);
+  //   await movieClickHandler();
+  // };
 
   const movieClickHandler = async (movieObj) => {
     const id = movieObj.id;
@@ -22,7 +22,6 @@ const Movies = () => {
     } else {
       videoType = mediaType;
     }
-    setIsLoading(true);
     //console.log("movie obj", movieObj)
     navigate(`/id/${videoType}/${id}`);
   };
@@ -70,8 +69,8 @@ const Movies = () => {
             }
           })
         ) : (
-          <div className="fav-no-data">
-            <span className="no-fav-msg">No Data Found</span>
+          <div className="loading-text">
+            <img src={loadingImage} alt="loading" />
           </div>
         )}
       </div>

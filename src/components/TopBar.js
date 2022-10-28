@@ -21,7 +21,7 @@ const TopBar = () => {
                   style={{ width: "100%", height: "100%" }}
                   src={`https://image.tmdb.org/t/p/original${firstMovie.backdrop_path}`}
                   className="topbar-movie-image"
-                  alt="topbar-movie-image"
+                  alt="topbar-movie"
                 />
                 <div className="topbar-trending-title">
                   {firstMovie.original_title
