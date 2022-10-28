@@ -1,9 +1,6 @@
 import React, { useState } from "react";
-import axios from "axios";
-import { useGlobalContext } from "./Context";
+import { useGlobalContext } from "../context/Context";
 import { useNavigate, useParams } from "react-router-dom";
-import { useEffect } from "react";
-import { Pagination } from "react-bootstrap";
 
 const Movies = () => {
   const { movieList, totalPage, dynamicText, mediaType } = useGlobalContext();

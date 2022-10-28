@@ -1,15 +1,11 @@
 import "./App.css";
-import Movies from "./Movies";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import SingleMovie from "./SingleMovie";
-import Error from "./Error";
-import Home from "./Home";
+import SingleMovie from "./components/SingleMovie";
+import Error from "./components/Error";
+import Home from "./components/Home";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Favourites from "./Favourites";
-import AddFavourites from "./AddFavourites";
-import Search from "./Search";
-import SearchGenre from "./SearchGenre";
-import Signup from "./Signup";
+import Favourites from "./components/Favourites";
+import SearchGenre from "./components/SearchGenre";
 
 const App = () => {
   return (
@@ -25,8 +21,6 @@ const App = () => {
         />
         <Route path="/:genre_name" element={<Home />} />
         <Route path="/all" element={<Home />} />
-        <Route path="/signup" element={<Signup />} />
-
         <Route path="*" element={<Error />} />
       </Routes>
     </BrowserRouter>

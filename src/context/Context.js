@@ -53,6 +53,7 @@ const AppProvider = ({ children }) => {
       }
     } else if (toShow === "search") {
       console.log("i i am search data");
+      //debouncing used for activate searching after 1 sec
       const timeclearId = setTimeout(() => {
         try {
           const SEARCH_URL = `https://api.themoviedb.org/3/search/multi?api_key=e229afd722b6ee38525d46e0b317f72b&language=en-US&query=${searchValue}&page=${page}`;
@@ -76,12 +77,12 @@ const AppProvider = ({ children }) => {
         } finally {
           setDynamicText(`Search Result For ${searchValue}`);
         }
-      }, 1000);
+      }, 900);
 
       return () => clearTimeout(timeclearId);
     } else if (toShow === "default") {
       console.log("hii i am default");
-      URL = `https://api.themoviedb.org/3/trending/all/week?api_key=e229afd722b6ee38525d46e0b317f72b&page=${page}`;
+      URL = `https://api.themoviedb.org/3/trending/all/week?api_key=${process.env.REACT_APP_API_KEY}&page=${page}`;
 
       try {
         const getMoviesdata = async () => {
