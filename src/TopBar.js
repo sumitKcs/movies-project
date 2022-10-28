@@ -21,7 +21,7 @@ const TopBar = () => {
 
                   <img style={{ width: "100%", height: "100%" }} src={`https://image.tmdb.org/t/p/original${firstMovie.backdrop_path}`} className="topbar-movie-image" alt="..." />
                   <div className='topbar-trending-title'>
-                    {firstMovie.original_title}
+                    {(firstMovie.original_title)?firstMovie.original_title : firstMovie.original_name }
                   </div>
                   <div className='topbar-trending-rank'>
                     Trending #1
