@@ -3,7 +3,7 @@ import React from "react";
 const Shimmer = () => {
   return (
     <div
-      className="movie-container"
+      className="movie-container animate-pulse"
       style={{ width: "100%", height: "100%", background: "#F5F3F3" }}
     >
       <div className="movie-image">
