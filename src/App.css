@@ -84,8 +84,8 @@ a.navbar-brand {
 
 .topbar-movie-image {
     object-fit: cover;
-    object-position:0 20%;
-    
+    object-position: 0 20%;
+
 }
 
 
@@ -186,6 +186,7 @@ a.navbar-brand {
     cursor: pointer;
 
 }
+
 .back-button:hover {
     color: grey;
 
@@ -337,15 +338,45 @@ a.navbar-brand {
     font-weight: bolder;
     color: grey;
 }
+
+.loader {
+    width: 4rem;
+    height: 4rem;
+    color: gray;
+    fill: #6469ff;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 /* media query starts here */
 @media only screen and (max-width: 1024px) {
     .topbar-movie-image {
         object-fit: cover;
-        object-position:0;
-        
+        object-position: 0;
+
     }
-    
-    
+
+
     .single-movie-card-container {
         display: flex;
         flex-direction: row;
@@ -480,10 +511,11 @@ a.navbar-brand {
         font-weight: bolder;
         color: grey;
     }
-    .dropdown-menu{
+
+    .dropdown-menu {
         height: 400px;
         overflow-y: scroll;
     }
-   
-   
+
+
 }
